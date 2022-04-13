@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class dataController {
-       
+   
     DataJpaController ctrl = new DataJpaController();
     List<Data> newData = new ArrayList<>();
     
@@ -30,7 +30,7 @@ public class dataController {
         } catch (Exception e) {
             result=e.getMessage();
         }
-        model.addAttribute("newData", newData);
+        model.addAttribute("goData", newData);
         model.addAttribute("record", record);
         
         
