@@ -40,6 +40,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Data.findByBerakhirhingga", query = "SELECT d FROM Data d WHERE d.berakhirhingga = :berakhirhingga")})
 public class Data implements Serializable {
 
+    @Lob
+    @Column(name = "gambar")
+    private byte[] gambar;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -216,6 +220,14 @@ public class Data implements Serializable {
     @Override
     public String toString() {
         return "unu.jogja.project.ktp.Data[ id=" + id + " ]";
+    }
+
+    public byte[] getGambar() {
+        return gambar;
+    }
+
+    public void setGambar(byte[] gambar) {
+        this.gambar = gambar;
     }
     
 }

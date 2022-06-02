@@ -27,21 +27,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/data">Database</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-
                     </ul>
 
                 </div>
@@ -52,8 +37,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div class="container">
             <h3 class="text-center pb-5"><font color="black">Database KTP Indonesia</font><br> </h3>
 
-
-            <a href="/create" class="btn btn-primary mb-2" >Create Data</a>
             <table id="tabelKTP" class="table table-dark table-striped">
                 <thead>
                     <tr>
@@ -65,6 +48,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </tr>
                 </thead>
                 <tbody>
+
                     <tr th:each="data:${goData}">
                         <td th:text="${data.noktp}"></td>
                         <td th:text="${data.nama}"></td>
@@ -76,9 +60,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <a href="/delete" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
-
                 </tbody>
-            </table>
+                
+            </table>            
         </div>
 
 
@@ -93,4 +77,5 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             });
         </script>
     </body>
+    
 </html>
