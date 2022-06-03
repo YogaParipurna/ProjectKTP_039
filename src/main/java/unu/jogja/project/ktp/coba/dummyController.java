@@ -58,7 +58,6 @@ public class dummyController {
     }
     
     @PostMapping(value="/newData", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    @ResponseBody
     public String newDummy(@RequestParam("gambar") MultipartFile file, HttpServletRequest data) throws ParseException, Exception{
         
         Dummy dumData = new Dummy();
@@ -75,24 +74,20 @@ public class dummyController {
         
         dummyController.create(dumData);
         
-        return "dummy/create";
+        return "redirect:/read";
     }
     
-    @RequestMapping(value = "/image", method = RequestMethod.GET, produces = {
-      MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE
-    })
-    
+    @RequestMapping(value = "/image", method = RequestMethod.GET, produces = {MediaType.IMAGE_PNG_VALUE})  
     public ResponseEntity<byte[]> getImg(@RequestParam("id") int id) throws Exception {
-    Dummy dumData = dummyController.findDummy(id);
-    byte[] img = dumData.getGambar();
-    return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(img);
+        Dummy dumData = dummyController.findDummy(id);
+        byte[] img = dumData.getGambar();
+    return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(img);
   }
     
   @GetMapping("/delete/{id}")
-  @ResponseBody
   public String deleteDummy(@PathVariable("id") int id) throws Exception {
     dummyController.destroy(id);
-    return "http://localhost:8080/read";
+    return "redirect:/read";
   }
   
   @RequestMapping("/edit/{id}")
@@ -103,8 +98,7 @@ public class dummyController {
   }
   
   @PostMapping(value = "/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-  @ResponseBody
-  public String updateDummyData(@RequestParam("gambar") MultipartFile f, HttpServletRequest r) throws ParseException, Exception {
+  public String updateDummyData(HttpServletRequest data, @RequestParam("gambar") MultipartFile f, HttpServletRequest r) throws ParseException, Exception {
     Dummy dumData = new Dummy();
 
     int id = Integer.parseInt(r.getParameter("id"));
@@ -114,8 +108,7 @@ public class dummyController {
     dumData.setId(id);
     dumData.setTanggal(date);
     dumData.setGambar(image);
-        
     dummyController.edit(dumData);
-    return "updated";
+    return "redirect:/read";
   }
 }
